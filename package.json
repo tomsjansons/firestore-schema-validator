@@ -39,6 +39,7 @@
     "jsdoc-to-markdown": "^5.0.0"
   },
   "dependencies": {
+    "@firebase/firestore-types": "^1.9.1",
     "moment": "^2.24.0"
   }
 }

@@ -33,7 +33,7 @@ const userSchema = schema({
     .email(),
 })
 
-class UserModel extends Model {
+class UserModel extends Model() {
   // Path to Cloud Firestore collection.
   static get _collectionPath() {
     return 'users'
@@ -89,7 +89,7 @@ const userSchema = schema({
     })
 })
 
-class UserModel extends Model {
+class UserModel extends Model() {
   static get _collectionPath() {
     return 'users'
   }
