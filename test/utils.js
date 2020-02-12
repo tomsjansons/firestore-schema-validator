@@ -1,18 +1,18 @@
-const admin = require('firebase-admin')
+const { firestore } = require('../lib/firestore')
 
 const arrays = [
   [],
   [1, '2', true, null],
 ]
 
-const booleans = [ false, true ]
+const booleans = [false, true]
 
 const documentReferences = [
-  new admin.firestore.DocumentReference(),
+  new firestore.DocumentReference(),
 ]
 
 const geoPoints = [
-  new admin.firestore.GeoPoint(-50, 100),
+  new firestore.GeoPoint(-50, 100),
 ]
 
 const integers = [
@@ -50,7 +50,7 @@ const strings = [
 ]
 
 const timestamps = [
-  new admin.firestore.Timestamp(10000, 10000),
+  new firestore.Timestamp(10000, 10000),
 ]
 
 const acceptable = [
@@ -69,7 +69,7 @@ const acceptable = [
 const nonAcceptable = [
   undefined,
   NaN,
-  () => {},
+  () => { },
   Symbol(),
   new ArrayBuffer(10),
   new Boolean(true),
@@ -85,7 +85,7 @@ const nonAcceptable = [
   new WeakSet(),
   new RegExp(),
   new Promise(resolve => resolve),
-  new class SomeClass {},
+  new class SomeClass { },
 ]
 
 const all = [

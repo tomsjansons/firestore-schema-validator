@@ -6,8 +6,6 @@ Inspired by [mongoose](https://github.com/Automattic/mongoose) and [datalize](ht
 
 ## Installation
 
-Requires `firebase-admine` package.
-
 ```bash
 npm install --save firestore-schema-validator
 ```
@@ -165,13 +163,33 @@ UserModel.posthook('password', (data, user) => {
 ### Working with UserModel
 
 ```javascript
+const { setFirestore } = require('firestore-schema-validator')
 const admin = require('firebase-admin')
-const User = require('../UserModel.js')
-
 // Initialize Firebase
 admin.initailizeApp({
   // config
 })
+
+setFirestore(admin.firestore)
+
+```
+
+Or
+
+```javascript
+const { setFirestore } = require('firestore-schema-validator')
+const firebase = require('firebase/app')
+// Initialize Firebase
+firebase.initailizeApp({
+  // config
+})
+
+setFirestore(firebase.firestore)
+
+```
+
+```javascript
+const User = require('../UserModel.js')
 
 const user = await User.create({
   firstName: 'Jon',
