@@ -1,4 +1,4 @@
-const { firestore } = require('../lib/firestore')
+const { getFirestore } = require('../lib/firestore')
 
 const arrays = [
   [],
@@ -8,11 +8,11 @@ const arrays = [
 const booleans = [false, true]
 
 const documentReferences = [
-  new firestore.DocumentReference(),
+  new getFirestore().firestore.DocumentReference(),
 ]
 
 const geoPoints = [
-  new firestore.GeoPoint(-50, 100),
+  new getFirestore().firestore.GeoPoint(-50, 100),
 ]
 
 const integers = [
@@ -50,7 +50,7 @@ const strings = [
 ]
 
 const timestamps = [
-  new firestore.Timestamp(10000, 10000),
+  new getFirestore().firestore.Timestamp(10000, 10000),
 ]
 
 const acceptable = [
