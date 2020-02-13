@@ -193,6 +193,7 @@ type SubscribeCallbackList<T> = (
 	addedDocuments: T[],
 	changedDocuments: T[]
 ) => void
+type Unsubscribe = () => void
 
 export function Model<T extends DataFields, M>() {
 	abstract class Model {
@@ -351,9 +352,10 @@ export function Model<T extends DataFields, M>() {
 		 * @static
 		 * @param {String} id
 		 * @param {Function} subscriptionCallback - Subscription Callback.
+		 * @returns {Function} Unsubscribe.
 		 * @memberof ModelClass
 		 */
-		static getById(id: string, subscriptionCallback: SubscribeCallback<M>): void
+		static getByIdSubscribe(id: string, subscriptionCallback: SubscribeCallback<M>): Unsubscribe
 
 		/**
 		 * Fetches Document by key and value pair.
@@ -373,9 +375,10 @@ export function Model<T extends DataFields, M>() {
 		 * @param {String} key - Key.
 		 * @param {*} value - Value to compare.
 		 * @param {Function} subscriptionCallback - Subscription Callback.
+		 * @returns {Function} Unsubscribe.
 		 * @memberof Model
 		 */
-		static getBy<K extends keyof T>(key: K, value: T[K], subscriptionCallback: SubscribeCallbackList<M>): void
+		static getBySubscribe<K extends keyof T>(key: K, value: T[K], subscriptionCallback: SubscribeCallbackList<M>): Unsubscribe
 
 		/**
 		 * Fetches all Documents by key and value pair.
@@ -401,14 +404,15 @@ export function Model<T extends DataFields, M>() {
 		 * @param {*} value
 		 * @param {array} optionalModifiers
 		 * @param {Function} subscriptionCallback - Subscription Callback.
+		 * @returns {Function} Unsubscribe.
 		 * @memberof Model
 		 */
-		static getAllBy<K extends keyof T>(
+		static getAllBySubscribe<K extends keyof T>(
 			key: K,
 			value: T[K],
 			optionalModifiers?: WhereModifier<T, keyof T>[],
 			subscriptionCallback: SubscribeCallbackList<M>
-		): void
+		): Unsubscribe
 
 		/**
 		 * Creates new Document.
