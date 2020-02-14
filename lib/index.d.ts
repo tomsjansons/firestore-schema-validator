@@ -209,7 +209,7 @@ export function Model<T extends DataFields, M>() {
 		 * @returns {Proxy} ModelProxy which handles data setters and getters.
 		 * @memberof Model
 		 */
-		constructor(_snapshot: firestore.DocumentSnapshot, _data: T);
+		constructor(_snapshot: firestore.DocumentSnapshot, _data?: T);
 
 		get _data(): T;
 
