@@ -56,7 +56,7 @@ export class Field<T> {
 	 * @returns {this}
 	 * @memberof Field
 	 */
-	custom(filter: (...args: any) => T): Field<T>;
+	custom<TCustom>(filter: (fieldData: any) => T): Field<TCustom>;
 
 	/**
 	 * Defines default value that will be returned if Field Data is undefined.
