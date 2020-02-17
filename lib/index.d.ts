@@ -348,7 +348,7 @@ export function Model<T extends DataFields, M>() {
 		 * @returns {this|null} Instance of Model or null.
 		 * @memberof Model
 		 */
-		static getById(id: string): Promise<M>;
+		static getById(id: string): Promise<M | null>;
 
 		/**
 		 * Fetches Document by ID.
@@ -361,7 +361,7 @@ export function Model<T extends DataFields, M>() {
 		 */
 		static getByIdSubscribe(
 			id: string,
-			subscriptionCallback: SubscribeCallback<M>
+			subscriptionCallback: SubscribeCallback<M | null>
 		): Unsubscribe;
 
 		/**
@@ -373,7 +373,7 @@ export function Model<T extends DataFields, M>() {
 		 * @returns {this|null} Instance of this or null.
 		 * @memberof Model
 		 */
-		static getBy<K extends keyof T>(key: K, value: T[K]): Promise<M>;
+		static getBy<K extends keyof T>(key: K, value: T[K]): Promise<M | null>;
 
 		/**
 		 * Fetches Document by key and value pair.
@@ -433,7 +433,7 @@ export function Model<T extends DataFields, M>() {
 		 * @returns Instance of this.
 		 * @memberof Model
 		 */
-		static create(data?: T): Promise<M>;
+		static create(data?: T, id?: string): Promise<M>;
 
 		/**
 		 * Deletes Document.
