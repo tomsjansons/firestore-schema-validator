@@ -10,9 +10,7 @@
     "node": true,
     "jest": true
   },
-  "plugins": [
-    "promise"
-  ],
+  "plugins": ["promise"],
   "extends": "eslint:recommended",
   "rules": {
     "indent": [
@@ -23,26 +21,20 @@
       }
     ],
 
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
+    "linebreak-style": ["error", "unix"],
 
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "quotes": ["error", "single", { "avoidEscape": true }],
 
-    "semi": [
-      "error",
-      "never"
-    ],
+    "semi": ["error", "never"],
 
-    "no-unused-vars": ["error", {
-      "vars": "all",
-      "args": "none",
-      "ignoreRestSiblings": false
-    }],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "none",
+        "ignoreRestSiblings": false
+      }
+    ],
 
     // Removed rule "disallow the use of console" from recommended eslint rules
     "no-console": "off",
