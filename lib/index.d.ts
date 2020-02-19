@@ -124,7 +124,7 @@ export class Field<T> {
   object(errorMessage?: string): Field<Object>
   oneOf(acceptableValues: T[], errorMessage?: string): Field<T>
   range(min: T, max: T, errorMessage?: string): Field<T>
-  reference(errorMessage?: string): Field<firestore.DocumentReference | firestore2.GeoPoint>
+  reference(errorMessage?: string): Field<firestore.DocumentReference | firestore2.DocumentReference>
   string(errorMessage?: string): Field<string>
   timestamp(errorMessage?: string): Field<firestore.Timestamp | firestore2.Timestamp>
   toLowerCase(errorMessage?: string): Field<T>
@@ -194,20 +194,6 @@ type SubscribeCallbackList<T> = (
   changedDocuments: T[]
 ) => void
 type Unsubscribe = () => void
-
-// type IsSimple<T> = T extends object ? (T extends fs ? 'yes' : 'no') : 'yes'
-
-// type KeyArray<T extends DataFields, K extends keyof T> = IsSimple<T[K]> extends 'yes'
-// 	? [K]
-// 	: [K, KeyArray<T[K], keyof T[K]>]
-
-// type SimpleOrUndefined<T, K extends keyof T> = T[K] extends object
-// 	? T[K] extends firestore.DocumentReference | firestore.Timestamp | firestore.GeoPoint
-// 		? undefined
-// 		: KeyArray<T[K], keyof T[K]>
-// 	: undefined
-
-// type KeyArray<T extends DataFields, K extends keyof T> = [K, SimpleOrUndefined<T[K], K>]
 
 export function Model<T extends DataFields, M>() {
   abstract class ModelClass {
