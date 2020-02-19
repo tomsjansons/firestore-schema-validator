@@ -1,4 +1,5 @@
 import * as firestore from '@firebase/firestore-types'
+import * as firestore2 from '@google-cloud/firestore'
 import EventEmitter from 'events'
 
 export function setFirestore(_firestore: any): void
@@ -111,7 +112,7 @@ export class Field<T> {
   date(format: string, errorMessage?: string): Field<Date>
   email(errorMessage?: string): Field<string>
   equal(compare: T, errorMessage?: string): Field<T>
-  geopoint(errorMessage?: string): Field<firestore.GeoPoint>
+  geopoint(errorMessage?: string): Field<firestore.GeoPoint | firestore2.GeoPoint>
   integer(errorMessage?: string): Field<number>
   length(length: number, errorMessage?: string): Field<T>
   number(errorMessage?: string): Field<number>
@@ -123,9 +124,9 @@ export class Field<T> {
   object(errorMessage?: string): Field<Object>
   oneOf(acceptableValues: T[], errorMessage?: string): Field<T>
   range(min: T, max: T, errorMessage?: string): Field<T>
-  reference(errorMessage?: string): Field<firestore.DocumentReference>
+  reference(errorMessage?: string): Field<firestore.DocumentReference | firestore2.GeoPoint>
   string(errorMessage?: string): Field<string>
-  timestamp(errorMessage?: string): Field<firestore.Timestamp>
+  timestamp(errorMessage?: string): Field<firestore.Timestamp | firestore2.Timestamp>
   toLowerCase(errorMessage?: string): Field<T>
   toUpperCase(errorMessage?: string): Field<T>
   trim(errorMessage?: string): Field<T>
@@ -177,7 +178,7 @@ type DataEvent = 'created' | 'updated' | 'deleted'
 
 type WhereModifier = {
   key: string
-  opStr: firestore.WhereFilterOp
+  opStr: firestore.WhereFilterOp | firestore2.WhereFilterOp
   value: any
 }
 
@@ -218,7 +219,7 @@ export function Model<T extends DataFields, M>() {
      * @returns {Proxy} ModelProxy which handles data setters and getters.
      * @memberof Model
      */
-    constructor(_snapshot: firestore.DocumentSnapshot, _data?: T)
+    constructor(_snapshot: firestore.DocumentSnapshot | firestore2.DocumentSnapshot, _data?: T)
 
     get _data(): T
 
@@ -266,7 +267,7 @@ export function Model<T extends DataFields, M>() {
      * @type {CollectionReference}
      * @memberof Model
      */
-    static get _collectionRef(): firestore.CollectionReference
+    static get _collectionRef(): firestore.CollectionReference | firestore2.CollectionReference
 
     /**
      * Collection Reference.
@@ -275,7 +276,7 @@ export function Model<T extends DataFields, M>() {
      * @type {String}
      * @memberof Model
      */
-    get _collectionRef(): firestore.CollectionReference
+    get _collectionRef(): firestore.CollectionReference | firestore2.CollectionReference
 
     /**
      * Document Reference.
@@ -284,7 +285,7 @@ export function Model<T extends DataFields, M>() {
      * @type {String}
      * @memberof Model
      */
-    get _docRef(): firestore.DocumentReference
+    get _docRef(): firestore.DocumentReference | firestore2.DocumentReference
 
     /**
      * Instance of EventEmitter used with this.on() and this.emit().
@@ -345,7 +346,7 @@ export function Model<T extends DataFields, M>() {
      * @memberof ModelClass
      */
     static _querySubscriptionCallback(
-      querySnap: firestore.QuerySnapshot,
+      querySnap: firestore.QuerySnapshot | firestore2.QuerySnapshot,
       subscriptionCallback: SubscribeCallbackList<M>
     ): void
 
@@ -455,7 +456,7 @@ export function Model<T extends DataFields, M>() {
      * @returns This.
      * @memberof Model
      */
-    save(options?: firestore.SetOptions): Promise<this>
+    save(options?: firestore.SetOptions | firestore2.SetOptions): Promise<this>
 
     /**
      * Validates Document Data.

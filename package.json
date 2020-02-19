@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@firebase/firestore-types": "^1.9.1",
+    "@google-cloud/firestore": "^3.5.1",
     "moment": "^2.24.0"
   }
 }
