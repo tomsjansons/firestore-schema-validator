@@ -1,4 +1,4 @@
-import * as firestore from '@firebase/firestore-types'
+import * as firestore from '@google-cloud/firestore'
 import EventEmitter from 'events'
 
 export function setFirestore(_firestore: any): void
