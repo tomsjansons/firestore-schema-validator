@@ -19,7 +19,8 @@
   ],
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "firebase-admin"
   ],
   "scripts": {
     "lint": "eslint .",
